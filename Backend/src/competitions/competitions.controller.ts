@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { CompetitionsService } from './competitions.service';
 import { CreateCompetitionDto } from './dto/create-competition.dto';
 import { UpdateCompetitionDto } from './dto/update-competition.dto';
+import { Public } from 'src/auth/public.decorator';
 
 @Controller('competitions')
 export class CompetitionsController {
@@ -13,11 +14,13 @@ export class CompetitionsController {
   }
 
   @Get()
+  @Public()
   findAll() {
     return this.competitionsService.findAll();
   }
 
   @Get(':id')
+  @Public()
   findOne(@Param('id') id: string) {
     return this.competitionsService.findOne(id);
   }

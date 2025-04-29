@@ -17,11 +17,25 @@ export class CompetitionsService {
   }
 
   async findAll() : Promise<Competition[]> {
-    return await this.competitionModel.find().exec();
+    return await this.competitionModel.find()
+    .populate('hostGym', 'name')
+    .exec();
   }
 
   async findOne(id: string) : Promise<Competition>{
-    const competition = await this.competitionModel.findById(id).exec();
+    const competition = await this.competitionModel.findById(id)
+    .populate('hostGym', 'name')
+    .populate({
+      path :'invitedGyms',
+      model : 'Gym',
+      select : 'name'
+    })
+    .populate({
+      path :'participants',
+      model : 'Member',
+      select : 'name gender dateOfBirth gym'
+    })
+    .exec();
     if (!competition) {
       throw new NotFoundException(`Competition with ID ${id} not found`);
     }

@@ -1,7 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
-import { Gym } from '../../gyms/entities/gym.entity';
-import { Member } from '../../members/entities/member.entity';
 
 export type CompetitionDocument = HydratedDocument<Competition>;
 
@@ -21,13 +19,13 @@ export class Competition {
   date: Date;
 
   @Prop({ type: Types.ObjectId, ref: 'Gym', required: true })
-  hostGym: Types.ObjectId | Gym;
+  hostGym: Types.ObjectId;
 
-  @Prop({ type: [Types.ObjectId], ref: 'Gym' })
-  invitedGyms?: Types.ObjectId[] | Gym[];
+  @Prop({ type: [Types.ObjectId], ref: 'Gym', default: [] })
+  invitedGyms?: Types.ObjectId[] | [];
 
-  @Prop({ type: [Types.ObjectId], ref: 'Member' })
-  participants?: Types.ObjectId[] | Member[];
+  @Prop({ type: [Types.ObjectId], ref: 'Member', default: [] })
+  participants?: Types.ObjectId[] | [];
 }
 
 export const CompetitionSchema = SchemaFactory.createForClass(Competition);
