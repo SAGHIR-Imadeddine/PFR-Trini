@@ -19,16 +19,16 @@ export class EquipementsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.equipementsService.findOne(+id);
+    return this.equipementsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateEquipementDto: UpdateEquipementDto) {
-    return this.equipementsService.update(+id, updateEquipementDto);
+    return this.equipementsService.update(id, updateEquipementDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.equipementsService.remove(+id);
+    return this.equipementsService.remove(id);
   }
 }

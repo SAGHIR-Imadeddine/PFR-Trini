@@ -19,16 +19,16 @@ export class CompetitionsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.competitionsService.findOne(+id);
+    return this.competitionsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCompetitionDto: UpdateCompetitionDto) {
-    return this.competitionsService.update(+id, updateCompetitionDto);
+    return this.competitionsService.update(id, updateCompetitionDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.competitionsService.remove(+id);
+    return this.competitionsService.remove(id);
   }
 }

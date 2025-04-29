@@ -1,26 +1,46 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCompetitionDto } from './dto/create-competition.dto';
 import { UpdateCompetitionDto } from './dto/update-competition.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Competition, CompetitionDocument } from './entities/competition.entity';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class CompetitionsService {
-  create(createCompetitionDto: CreateCompetitionDto) {
-    return 'This action adds a new competition';
+  constructor(
+    @InjectModel(Competition.name) private readonly competitionModel: Model<CompetitionDocument>,
+  ) {}
+
+  async create(createCompetitionDto: CreateCompetitionDto) : Promise<Competition> {
+    const newCompetition = new this.competitionModel(createCompetitionDto);
+    return await newCompetition.save();
   }
 
-  findAll() {
-    return `This action returns all competitions`;
+  async findAll() : Promise<Competition[]> {
+    return await this.competitionModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} competition`;
+  async findOne(id: string) : Promise<Competition>{
+    const competition = await this.competitionModel.findById(id).exec();
+    if (!competition) {
+      throw new NotFoundException(`Competition with ID ${id} not found`);
+    }
+    return competition;
   }
 
-  update(id: number, updateCompetitionDto: UpdateCompetitionDto) {
-    return `This action updates a #${id} competition`;
+  async update(id: string, updateCompetitionDto: UpdateCompetitionDto) {
+    const updatedCompetition = await this.competitionModel.findByIdAndUpdate(id, updateCompetitionDto, {new : true}).exec();
+    if (!updatedCompetition) {
+      throw new NotFoundException(`Competition with ID ${id} not found`);
+    }
+    return updatedCompetition;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} competition`;
+  async remove(id: string) {
+    const deletedCompetition = await this.competitionModel.findByIdAndDelete(id).exec();
+    if (!deletedCompetition) {
+      throw new NotFoundException(`Competition with ID ${id} not found`);
+    }
+    return deletedCompetition;
   }
 }
