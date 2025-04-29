@@ -29,7 +29,7 @@ export class User {
   role: UserRole;
 
   @Prop({ type: [Types.ObjectId], ref: 'Gym', default: [] })
-  gyms?: Types.ObjectId[] | Gym[];
+  gyms?: Types.ObjectId[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

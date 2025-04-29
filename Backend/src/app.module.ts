@@ -9,7 +9,9 @@ import { GymsModule } from './gyms/gyms.module';
 import { MembersModule } from './members/members.module';
 import { EquipementsModule } from './equipements/equipements.module';
 import { CompetitionsModule } from './competitions/competitions.module';
-
+import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './auth/auth.guard';
 
 @Module({
   imports: [
@@ -30,11 +32,16 @@ import { CompetitionsModule } from './competitions/competitions.module';
     MembersModule,
     EquipementsModule,
     CompetitionsModule,
+    AuthModule,
 
   ],
   controllers: [AppController],
   providers: [
     AppService,
+    {
+      provide : APP_GUARD,
+      useClass : JwtAuthGuard 
+    }
   ],
 })
 export class AppModule {}
