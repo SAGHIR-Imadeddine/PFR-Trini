@@ -1,26 +1,48 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Gym, GymDocument } from './entities/gym.entity';
 import { CreateGymDto } from './dto/create-gym.dto';
 import { UpdateGymDto } from './dto/update-gym.dto';
 
 @Injectable()
 export class GymsService {
-  create(createGymDto: CreateGymDto) {
-    return 'This action adds a new gym';
-  }
+    constructor(
+        @InjectModel(Gym.name) private readonly gymModel: Model<GymDocument>,
+    ) {}
 
-  findAll() {
-    return `This action returns all gyms`;
-  }
+    async create(createGymDto: CreateGymDto): Promise<Gym> {
+        const createdGym = new this.gymModel(createGymDto);
+        return createdGym.save();
+    }
 
-  findOne(id: number) {
-    return `This action returns a #${id} gym`;
-  }
+    async findAll(): Promise<Gym[]> {
+        return this.gymModel.find().exec();
+    }
 
-  update(id: number, updateGymDto: UpdateGymDto) {
-    return `This action updates a #${id} gym`;
-  }
+    async findOne(id: string): Promise<Gym> {
+        const gym = await this.gymModel.findById(id).exec();
+        if (!gym) {
+            throw new NotFoundException(`Gym with ID ${id} not found`);
+        }
+        return gym;
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} gym`;
-  }
+    async update(id: string, updateGymDto: UpdateGymDto): Promise<Gym> {
+        const updatedGym = await this.gymModel
+            .findByIdAndUpdate(id, updateGymDto, { new: true })
+            .exec();
+        if (!updatedGym) {
+            throw new NotFoundException(`Gym with ID ${id} not found`);
+        }
+        return updatedGym;
+    }
+
+    async remove(id: string): Promise<Gym> {
+        const deletedGym = await this.gymModel.findByIdAndDelete(id).exec();
+        if (!deletedGym) {
+            throw new NotFoundException(`Gym with ID ${id} not found`);
+        }
+        return deletedGym;
+    }
 }

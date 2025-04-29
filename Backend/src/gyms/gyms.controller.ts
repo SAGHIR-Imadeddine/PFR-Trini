@@ -19,16 +19,16 @@ export class GymsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.gymsService.findOne(+id);
+    return this.gymsService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateGymDto: UpdateGymDto) {
-    return this.gymsService.update(+id, updateGymDto);
+    return this.gymsService.update(id, updateGymDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.gymsService.remove(+id);
+    return this.gymsService.remove(id);
   }
 }
