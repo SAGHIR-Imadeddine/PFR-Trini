@@ -8,5 +8,6 @@ import { Competition, CompetitionSchema } from './entities/competition.entity';
   imports: [MongooseModule.forFeature([{ name: Competition.name, schema: CompetitionSchema }])],
   controllers: [CompetitionsController],
   providers: [CompetitionsService],
+  exports: [CompetitionsService]
 })
 export class CompetitionsModule {}

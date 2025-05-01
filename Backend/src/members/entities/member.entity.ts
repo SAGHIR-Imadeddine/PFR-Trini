@@ -5,12 +5,6 @@ import { User } from '../../users/entities/user.entity';
 
 export type MemberDocument = HydratedDocument<Member>;
 
-export type Subscription = {
-  type: 'monthly' | 'yearly';
-  startDate: Date;
-  endDate: Date;
-};
-
 @Schema({
   collection: 'members',
   timestamps: true,
@@ -35,22 +29,20 @@ export class Member {
   @Prop()
   dateOfBirth?: Date;
 
-  @Prop({
-    type: {
-      type: String,
-      enum: ['monthly', 'yearly'],
-      required: true,
-    },
-    required: true,
-  })
-  subscription: Subscription;
+  @Prop({ required: true, enum: ['monthly', 'yearly'] })
+  subscriptionType: string;
 
+  @Prop({ required: true })
+  subscriptionStartDate: Date;
+
+  @Prop({ required: true })
+  subscriptionEndDate: Date;
 
   @Prop({ type: Types.ObjectId, ref: 'Gym', required: true })
-  gym: Types.ObjectId | Gym;
+  gym: Types.ObjectId;
 
   @Prop({ type: Types.ObjectId, ref: 'User', required: true })
-  createdBy: Types.ObjectId | User;
+  createdBy: Types.ObjectId;
 }
 
 export const MemberSchema = SchemaFactory.createForClass(Member);

@@ -3,12 +3,7 @@ import { PassportStrategy } from "@nestjs/passport";
 import { Strategy, ExtractJwt } from 'passport-jwt';
 import { ConfigService } from '@nestjs/config';
 import { UsersService } from "src/users/users.service";
-
-interface Payload {
-    _id         : string,
-    userName    : string,
-    email       : string
-}
+import { Payload } from "./dto/payload.interface";
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -20,14 +15,21 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     {
         super({
             jwtFromRequest : ExtractJwt.fromAuthHeaderAsBearerToken(),
+            ignoreExpiration: false,
             secretOrKey : configService.get<string>('JWT.AT')
         });
     }
 
-    async validate(payload : Payload){
+    async validate(payload: Payload) {
         const user = await this.usersService.findByEmail(payload.email);
         if (!user) throw new Error('User Token not found!');
-        return user;
+        return {
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            gyms: user.gyms
+        };
     }
     
 

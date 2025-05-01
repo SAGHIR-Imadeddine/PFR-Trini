@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
-import { Gym } from '../../gyms/entities/gym.entity';
+
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -33,4 +33,3 @@ export class User {
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
-UserSchema.index({ email: 1 });

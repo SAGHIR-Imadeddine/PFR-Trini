@@ -4,11 +4,11 @@ import {
     MinLength,
     MaxLength, 
     IsEmail,
-    IsEnum,
+    //IsEnum,
     IsOptional,
     IsArray
 } from "class-validator";
-import { UserRole } from "src/users/entities/user.entity";
+// import { UserRole } from "src/users/entities/user.entity";
 import { Types } from "mongoose";
 
 export class RegisterDto {
@@ -29,9 +29,9 @@ export class RegisterDto {
     @MaxLength(26, { message: 'A Valid Password is in the range of 8 to 26 character' })
     password : string;
     
-    @IsNotEmpty({ message: 'Role is required' })
-    @IsEnum(UserRole, { message: 'Role must be SUPER_ADMIN, OWNER, or EMPLOYEE' })
-    role: UserRole;
+    // @IsNotEmpty({ message: 'Role is required' })
+    // @IsEnum(UserRole, { message: 'Role must be SUPER_ADMIN, OWNER, or EMPLOYEE' })
+    // role: UserRole;
 
     @IsOptional()
     @IsArray({ message: 'Gyms must be an array of Gym IDs' })

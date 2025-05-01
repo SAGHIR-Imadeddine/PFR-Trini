@@ -1,7 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
-import { Gym } from '../../gyms/entities/gym.entity';
-import { User } from '../../users/entities/user.entity';
 
 export type EquipmentDocument = HydratedDocument<Equipment>;
 
@@ -26,10 +24,10 @@ export class Equipment {
   purchaseDate?: Date;
 
   @Prop({ type: Types.ObjectId, ref: 'Gym', required: true })
-  gym: Types.ObjectId | Gym;
+  gym: Types.ObjectId;
 
   @Prop({ type: Types.ObjectId, ref: 'User', required: true })
-  createdBy: Types.ObjectId | User;
+  createdBy: Types.ObjectId;
 }
 
 export const EquipmentSchema = SchemaFactory.createForClass(Equipment);

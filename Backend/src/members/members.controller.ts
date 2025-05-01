@@ -2,14 +2,18 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { MembersService } from './members.service';
 import { CreateMemberDto } from './dto/create-member.dto';
 import { UpdateMemberDto } from './dto/update-member.dto';
+import { Authenticated } from 'src/auth/authenticated.decorator';
+import { UserDocument } from 'src/users/entities/user.entity';
+import { Types } from 'mongoose';
 
 @Controller('members')
 export class MembersController {
   constructor(private readonly membersService: MembersService) {}
 
   @Post()
-  create(@Body() createMemberDto: CreateMemberDto) {
-    return this.membersService.create(createMemberDto);
+  create(@Body() createMemberDto: CreateMemberDto, @Authenticated() user: UserDocument) {
+    const gymId = new Types.ObjectId(createMemberDto.gym);
+    return this.membersService.create({...createMemberDto, gym: gymId, createdBy: user._id});
   }
 
   @Get()

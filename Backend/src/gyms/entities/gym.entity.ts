@@ -11,9 +11,12 @@ export type GymDocument = HydratedDocument<Gym>;
 export class Gym {
   @Prop({ required: true })
   name: string;
-
+ 
   @Prop()
   address?: string;
+  
+  @Prop({ type: Types.ObjectId, ref: 'User', required: true })
+  owner: Types.ObjectId;
 }
 
 export const GymSchema = SchemaFactory.createForClass(Gym);

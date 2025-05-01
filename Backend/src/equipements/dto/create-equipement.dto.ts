@@ -27,8 +27,8 @@ import {
     @IsMongoId({ message: 'Invalid Gym ID' })
     gym: string;
   
-    @IsNotEmpty({ message: 'Creator ID is required' })
-    @IsMongoId({ message: 'Invalid creator ID' })
-    createdBy: string;
+    // @IsNotEmpty({ message: 'Creator ID is required' })
+    // @IsMongoId({ message: 'Invalid creator ID' })
+    // createdBy: string;
   }
   

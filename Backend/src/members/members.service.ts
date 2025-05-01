@@ -12,8 +12,8 @@ export class MembersService {
     @InjectModel(Member.name) private memberModel : Model<MemberDocument>
   ){}
 
-  async create(createMemberDto: CreateMemberDto) : Promise<Member> {
-    const newMember = new this.memberModel(createMemberDto);
+  async create(member: Member) : Promise<Member> {
+    const newMember = new this.memberModel(member);
     return await newMember.save();
   }
 

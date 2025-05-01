@@ -1,15 +1,19 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { EquipementsService } from './equipements.service';
-import { CreateEquipementDto } from './dto/create-equipement.dto';
+import { CreateEquipmentDto } from './dto/create-equipement.dto';
 import { UpdateEquipementDto } from './dto/update-equipement.dto';
+import { Authenticated } from 'src/auth/authenticated.decorator';
+import { UserDocument } from 'src/users/entities/user.entity';
+import { Types } from 'mongoose';
 
 @Controller('equipements')
 export class EquipementsController {
   constructor(private readonly equipementsService: EquipementsService) {}
 
   @Post()
-  create(@Body() createEquipementDto: CreateEquipementDto) {
-    return this.equipementsService.create(createEquipementDto);
+  create(@Body() createEquipementDto: CreateEquipmentDto, @Authenticated() user : UserDocument) {
+    const gymId = new Types.ObjectId(createEquipementDto.gym);
+    return this.equipementsService.create({...createEquipementDto, gym: gymId, createdBy: user._id});
   }
 
   @Get()

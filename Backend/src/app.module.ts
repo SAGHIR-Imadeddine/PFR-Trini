@@ -12,6 +12,7 @@ import { CompetitionsModule } from './competitions/competitions.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/auth.guard';
+import { CompetitionInvitationsModule } from './competition-invitations/competition-invitations.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { JwtAuthGuard } from './auth/auth.guard';
     EquipementsModule,
     CompetitionsModule,
     AuthModule,
+    CompetitionInvitationsModule,
 
   ],
   controllers: [AppController],
