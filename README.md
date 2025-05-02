@@ -19,10 +19,9 @@ The Gym Management System includes the following features:
 
 ## Installation
 
-```Clone the repository: git clone https://github.com/TajwarSaiyeed/gym-management-system.git```
+`Clone the repository: git clone https://github.com/TajwarSaiyeed/gym-management-system.git`
 
-```Install dependencies: cd gym-management-system && npm install```
-
+`Install dependencies: cd gym-management-system && npm install`
 
 Create a `.env.local` file in the root directory and add your environment variables:
 
@@ -47,7 +46,6 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-
 ## Table of Contents
 
 1. [Introduction](#introduction)
@@ -61,8 +59,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 9. [Fees Pages](#fees-pages)
 10. [Notification Page](#notification-page)
 11. [Deploy](#deploy)
-
-
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
@@ -87,6 +83,7 @@ The Gym Management System repository can be found here: [GitHub Repository](http
 
 Description: Users can access their accounts by providing the correct email and password. Limited to authorized users.
 Features:
+
 - No sign-up system
 - Authentication using correct email and password
 - Utilizes Next-Auth for authentication
@@ -99,6 +96,7 @@ Features:
 
 Description: Admin can see various statistics and graphs related to user activity, attendance, and fees.
 Features:
+
 - Total Users, Trainers, Students
 - Online Users
 - Paid and Unpaid Fees
@@ -110,6 +108,7 @@ Features:
 
 Description: Trainers can view statistics and graphs related to user activity and attendance.
 Features:
+
 - Total Users, Trainers, Students
 - Online Users
 - Activity Status
@@ -120,6 +119,7 @@ Features:
 
 Description: Students can view their fees status, attendance graph, and activity status.
 Features:
+
 - Fees Status
 - Activity Status
 - Attendance Graph
@@ -131,6 +131,7 @@ Features:
 
 Description: Users can view and update their profile details, including images and personal information.
 Features:
+
 - View all details
 - Update Profile Image
 - Update Personal Data
@@ -142,6 +143,7 @@ Features:
 
 Description: Admins, trainers, and students can view detailed information about trainers.
 Features:
+
 - View trainer details
 - Trainer's All Data
 - Trainer's Image
@@ -152,6 +154,7 @@ Features:
 
 Description: Admins and trainers can view detailed information about students.
 Features:
+
 - View student details
 - Student's All Data
 - Student's Image
@@ -164,6 +167,7 @@ Features:
 
 Description: Admins can add both trainers and students, while trainers can only add students.
 Features:
+
 - Admin can add trainers and students
 - Trainers can add only students
 - Image Upload to Cloudinary
@@ -176,6 +180,7 @@ Features:
 
 Description: Admin can view, update, and delete user profiles and can assign trainers to students.
 Features:
+
 - See All Users
 - Delete User
 - Update User
@@ -188,6 +193,7 @@ Features:
 
 Description: Admins, trainers, and students can view a list of trainers with pagination support.
 Features:
+
 - List of trainers
 - Pagination
   Access Role: Admin, Trainer, Student
@@ -196,6 +202,7 @@ Features:
 
 Description: Admins and trainers can view a list of students with pagination support.
 Features:
+
 - List of students
 - Pagination
   Access Role: Admin, Trainer
@@ -206,6 +213,7 @@ Features:
 
 Description: Admins and trainers can create and monitor student attendance.
 Features:
+
 - Create attendance
 - Monitor attendance
 - Table view of all attendance
@@ -215,6 +223,7 @@ Features:
 
 Description: Students can view their attendance and mark their daily attendance.
 Features:
+
 - See Attendance
 - Mark Attendance
 - No late attendance allowed
@@ -226,6 +235,7 @@ Features:
 
 Description: Admins and trainers can manage exercises, including adding, viewing, and deleting.
 Features:
+
 - Add Exercise
 - See All Exercises
 - Delete Exercise
@@ -235,6 +245,7 @@ Features:
 
 Description: Admins and trainers can assign exercises to students with details like time period and sets.
 Features:
+
 - Select users
 - Assign/Update Exercise to users
 - Add Time, Sets, Steps, kg, Rest time for each exercise
@@ -244,6 +255,7 @@ Features:
 
 Description: Admins and trainers can manage foods, including adding, viewing, and deleting.
 Features:
+
 - Add Food
 - See All Foods
 - Delete Food
@@ -253,6 +265,7 @@ Features:
 
 Description: Admins and trainers can assign diet sheets to students with details like time period and meals.
 Features:
+
 - Select users
 - Assign/Update diet sheet to users
 - Checkmark food for different meals
@@ -262,6 +275,7 @@ Features:
 
 Description: Students can view their exercise routines, including details about each exercise.
 Features:
+
 - View Exercise Routines
 - See Time Periods, Sets, Steps, kg, Rest Time
   Access Role: Student
@@ -270,6 +284,7 @@ Features:
 
 Description: Students can access their diet sheets, including details about each meal.
 Features:
+
 - Access Diet Sheets
 - See Time Periods, Food for Different Meals
   Access Role: Student
@@ -280,6 +295,7 @@ Features:
 
 Description: Admins and trainers can add, track, and send reminders for student fees.
 Features:
+
 - Add Fees
 - Send Fee Notifications
 - Track Fees Status
@@ -290,6 +306,7 @@ Features:
 
 Description: Students can view their fees status, pay fees, and see fees history.
 Features:
+
 - See Fees Status
 - Pay Fees
 - See Fees History
@@ -299,6 +316,7 @@ Features:
 
 Description: Students can conveniently pay fees using Stripe checkout with various card options.
 Features:
+
 - Pay Fees via Stripe Checkout
 - Support for credit cards, debit cards, etc.
   Access Role: Student
@@ -307,6 +325,7 @@ Features:
 
 Description: After making a fee payment, students will see a payment success page with details.
 Features:
+
 - View Payment Details
 - See Billing Information
 - Check Payment Method
@@ -319,38 +338,9 @@ Features:
 
 Description: Users can send, view, and manage notifications.
 Features:
+
 - Send Notifications
 - View Notifications
 - Mark Notifications as Read
 - Navigate to Relevant Pages from Notifications
   Access Role: Admin, Trainer, Student
-
-This documentation provides an overview of the various pages, features, and functionalities available in the Gym Management System. For detailed usage instructions and implementation details, please refer to the [GitHub Repository](https://github.com/TajwarSaiyeed/gym-management-system).
-
-
-## Deploy on Vercel <a name="deploy"></a>
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-
-## Documentation
-
-For detailed information about each page and functionality, please refer to the [Documentation](#introduction) section.
-
-## Contributing
-
-Contributions to the Gym Management System are welcome! Feel free to fork the repository, create a new branch, and submit pull requests.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
-## Acknowledgements
-
-- This project was inspired by the need for a comprehensive gym management system.
-- Special thanks to [TajwarSaiyeed](https://github.com/TajwarSaiyeed) for creating and sharing this project.
-
-For detailed usage instructions and implementation details, please refer to the [GitHub Repository](https://github.com/TajwarSaiyeed/gym-management-system).
-
