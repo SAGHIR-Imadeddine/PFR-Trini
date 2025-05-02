@@ -30,8 +30,6 @@ DATABASE_URL =<your_mongodb_uri>
 NEXTAUTH_SECRET=<next_auth_secret>
 NODE_ENV="development"
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=<your_cloudname>
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=<your_stripe_publishable_key>
-NEXT_PUBLIC_STRIPE_SECRET_KEY=<your_stripe_secret_key>
 ```
 
 Run the development server:
