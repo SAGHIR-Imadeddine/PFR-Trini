@@ -20,11 +20,11 @@ export class CompetitionInvitationsService {
         const competition = await this.competitonService.findOne(createDTO.competition);
 
         if(!competition) throw new NotFoundException('Competion not Found');
-        if(!user.gyms?.includes(competition.hostGym)) throw new ForbiddenException();
+        if(!user.gyms?.includes(competition.hostGym._id)) throw new ForbiddenException();
 
         const invitation = new this.invitationModel({
             ...createDTO,
-            sourceGym : competition.hostGym,
+            sourceGym : competition.hostGym._id,
             type : InvitationType.OUTBOUND,
             status : InvitationStatus.PENDING
         });
@@ -40,7 +40,7 @@ export class CompetitionInvitationsService {
         
         const invitation = new this.invitationModel({
             ...createDTO,
-            targetGym : competition.hostGym,
+            targetGym : competition.hostGym._id,
             type : InvitationType.INBOUND,
             status : InvitationStatus.PENDING
         });
@@ -51,7 +51,7 @@ export class CompetitionInvitationsService {
         const invitation = await this.invitationModel.findById(id);
 
         if(!invitation) throw new NotFoundException('Invitation not Found');
-        if(!user.gyms?.includes(invitation.targetGym)) throw new ForbiddenException();
+        if(!user.gyms?.includes(invitation.targetGym._id)) throw new ForbiddenException();
 
         invitation.status = updateDto.status;
         invitation.actedBy = user._id;
